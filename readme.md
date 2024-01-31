@@ -1,0 +1,1 @@
+please use mvn test to run all the tests
