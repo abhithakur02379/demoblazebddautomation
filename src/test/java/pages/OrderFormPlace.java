@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class OrderFormPlace {
 	WebDriver driver;
 	
@@ -22,7 +24,7 @@ public class OrderFormPlace {
 
 	public void formDetails(String strName, String strCountry, String strCity, String strCard, String strMonth, String strYear) {
 
-		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(btn_purchase));
+		new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOfElementLocated(btn_purchase));
 		driver.findElement(lbl_name).sendKeys(strName);
 		driver.findElement(lbl_country).sendKeys(strCountry);
 		driver.findElement(lbl_city).sendKeys(strCity);
@@ -34,7 +36,7 @@ public class OrderFormPlace {
 
 	public void incompleteFormDetails(String strName,String strCountry, String strCity) throws InterruptedException {
 
-		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(btn_purchase));
+		new WebDriverWait(driver,Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOfElementLocated(btn_purchase));
 		driver.findElement(lbl_name).sendKeys(strName);
 		driver.findElement(lbl_country).sendKeys(strCountry);
 		driver.findElement(lbl_city).sendKeys(strCity);

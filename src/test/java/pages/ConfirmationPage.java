@@ -1,13 +1,13 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConfirmationPage {
 	WebDriver driver;
@@ -16,8 +16,6 @@ public class ConfirmationPage {
 	By buttonOK = By.xpath("//button[text()='OK']");
 
 	By listElements = By.xpath("//p[@class='lead text-muted ']");
-
-	By buttonAddToCart = By.xpath("//a[text()='Add to cart']");
 
 
 	public ConfirmationPage(WebDriver driver) {
@@ -36,24 +34,19 @@ public class ConfirmationPage {
 
 		String msgConfirmation = driver.findElement(lbl_MsgConfirmation).getText();
 		Assert.assertEquals(msgConfirmation, strExpectedResult);
-		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(buttonOK)).click();
+		new WebDriverWait(driver,Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOfElementLocated(buttonOK)).click();
 	}
 
-	public void errorMessage(String strExpectedResult) throws InterruptedException {
+	public void errorMessage(String strExpectedResult) {
 
-		String errorMessage = null;
-		Thread.sleep(5000);
-		new WebDriverWait(driver, 60).ignoring(NoAlertPresentException.class)
+		String errorMessage;
+		new WebDriverWait(driver, Duration.ofSeconds(60))
 				.until(ExpectedConditions.alertIsPresent());
-		Thread.sleep(5000);
 		Alert alert = driver.switchTo().alert();
-		Thread.sleep(5000);
 		errorMessage = driver.switchTo().alert().getText();
 		alert.accept();
-		driver.switchTo().defaultContent();
-
 		Assert.assertEquals(errorMessage, strExpectedResult);
-		new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(buttonOK)).click();
+
 	}
 
 

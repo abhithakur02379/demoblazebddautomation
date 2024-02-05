@@ -6,7 +6,7 @@ Feature: Place order on DemoBlaze site
     And I fill the user details <Name> <Country> <City> <CreditCard> <Month> <Year>
     Then I verify the <ExpectedResult> <Name> of my order
 
-    Examples: 
+    Examples:
       | site  | laptop | Name | Country | City | CreditCard | Month | Year | ExpectedResult |
       | "https://demoblaze.com/" | "MacBook Pro" | "John Doe" | "Portugal" | "Lisbon" | "375567668884617" | "02" | "2030" | "Thank you for your purchase!" |
       | "https://demoblaze.com/" | "MacBook Pro" | "Percy Clayton" | "United States" | "Jacksonville" | "4411732769254916" | "4" | "2029" | "Thank you for your purchase!" |

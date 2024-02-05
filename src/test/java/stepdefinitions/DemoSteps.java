@@ -1,21 +1,12 @@
 package stepdefinitions;
 
-import org.openqa.selenium.UnexpectedAlertBehaviour;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import pages.ConfirmationPage;
-import pages.HomePage;
-import pages.LaptopsPage;
-import pages.MenuPage;
-import pages.OrderFormPlace;
-import pages.PlacePage;
-import pages.SummaryPage;
+import pages.*;
 
 public class DemoSteps {
 	
@@ -29,8 +20,6 @@ public class DemoSteps {
 		chromeOptions.addArguments("--remote-allow-origins=*");
 		chromeOptions.addArguments("start-maximized");
 		driver=new ChromeDriver(chromeOptions);
-		String projectPath = System.getProperty("user.dir");
-		System.setProperty("webdriver.chrome.driver",projectPath + "/src/test/resources/drivers/chromedriver.exe");
 		driver.navigate().to(strUrl);
 		  
 	}
@@ -71,7 +60,7 @@ public class DemoSteps {
 	}
 
 	@Then("I verify that error message {string} is displayed")
-	public void verify_i_get_error_message(String strExpectedResult) throws InterruptedException {
+	public void verify_i_get_error_message(String strExpectedResult) {
 		ConfirmationPage confirmation = new ConfirmationPage(driver);
 		confirmation.errorMessage(strExpectedResult);
 		driver.quit();
